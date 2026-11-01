@@ -28,3 +28,8 @@ next-env.d.ts
 /coverage
 /test-results/
 /playwright-report/
+/playwright/*
+/.playwright-mcp/*
+
+# amazon q
+.amazonq/

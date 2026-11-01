@@ -15,7 +15,7 @@ export const Articles: CollectionConfig = {
     defaultColumns: ['title', 'category', 'author', 'workflowStatus', 'updatedAt'],
     listSearchableFields: ['title', 'slug'],
     group: 'Editorial',
-    preview: (doc) => `${serverURL}/preview/${doc.id}`,
+    preview: (doc) => doc?.id ? `${serverURL}/preview/${doc.id}` : null,
   },
   versions: { maxPerDoc: 25 },
   access: {
@@ -115,15 +115,14 @@ export const Articles: CollectionConfig = {
     },
     {
       name: 'reviewedBy',
-      type: 'relationship',
-      relationTo: 'users',
-      admin: { position: 'sidebar', readOnly: true },
+      type: 'text',
+      admin: { position: 'sidebar', readOnly: true, description: 'Auto-set when reviewed.' },
       access: { read: authorOrAdminField, update: nobodyField },
     },
     {
       name: 'reviewedAt',
       type: 'date',
-      admin: { position: 'sidebar', readOnly: true },
+      admin: { position: 'sidebar', readOnly: true, description: 'Auto-set when reviewed.' },
       access: { read: authorOrAdminField, update: nobodyField },
     },
     {
@@ -141,24 +140,10 @@ export const Articles: CollectionConfig = {
 
     // --- Derived fields ---
     {
-      name: 'readingTime',
-      type: 'number',
-      defaultValue: 1,
-      admin: { position: 'sidebar', readOnly: true },
-      access: { update: nobodyField },
-    },
-    {
       name: 'searchText',
       type: 'textarea',
       admin: { hidden: true },
       access: { read: nobodyField, update: nobodyField },
-    },
-    {
-      name: 'views',
-      type: 'number',
-      defaultValue: 0,
-      admin: { position: 'sidebar', readOnly: true },
-      access: { update: adminOnlyField },
     },
   ],
 }

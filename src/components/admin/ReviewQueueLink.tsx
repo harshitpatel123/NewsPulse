@@ -24,9 +24,17 @@ export function ReviewQueueLink() {
   const { user, logOut } = useAuth()
   if (!user) return null
 
+  const handleLogOut = async () => {
+    try {
+      await logOut()
+    } finally {
+      window.location.replace('/admin/login')
+    }
+  }
+
   return (
     <div style={{ width: '100%', marginBottom: '10px' }}>
-      <Link href="/" target="_blank" rel="noopener noreferrer" style={linkStyle}>
+      <Link href="/" style={linkStyle}>
         View Site ↗
       </Link>
 
@@ -41,7 +49,7 @@ export function ReviewQueueLink() {
 
       <button
         type="button"
-        onClick={() => logOut()}
+        onClick={handleLogOut}
         style={{ ...linkStyle, cursor: 'pointer' }}
       >
         Log Out

@@ -1,5 +1,5 @@
 import type { CollectionBeforeChangeHook, CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload'
-import { slugify, lexicalToPlainText, readingTimeMinutes } from '../../lib/text'
+import { slugify, lexicalToPlainText } from '../../lib/text'
 import { assertTransition, applyTransitionEffects } from '../../lib/workflow'
 import type { WorkflowStatus } from '../../lib/workflow'
 import { safeRevalidatePath } from '../../lib/revalidate'
@@ -53,9 +53,7 @@ export const derivedFieldsHook: CollectionBeforeChangeHook = ({ data }) => {
   const title = (data.title as string) ?? ''
   const summary = (data.summary as string) ?? ''
   const bodyText = lexicalToPlainText(data.body)
-  const combined = `${title} ${summary} ${bodyText}`
-  data.searchText = combined
-  data.readingTime = readingTimeMinutes(combined)
+  data.searchText = `${title} ${summary} ${bodyText}`
   return data
 }
 

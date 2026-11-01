@@ -281,7 +281,13 @@ export interface Article {
    * Auto-set when submitted for review.
    */
   submittedAt?: string | null;
-  reviewedBy?: (number | null) | User;
+  /**
+   * Auto-set when reviewed.
+   */
+  reviewedBy?: string | null;
+  /**
+   * Auto-set when reviewed.
+   */
   reviewedAt?: string | null;
   reviewLog?:
     | {
@@ -292,9 +298,7 @@ export interface Article {
         id?: string | null;
       }[]
     | null;
-  readingTime?: number | null;
   searchText?: string | null;
-  views?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -499,9 +503,7 @@ export interface ArticlesSelect<T extends boolean = true> {
         reason?: T;
         id?: T;
       };
-  readingTime?: T;
   searchText?: T;
-  views?: T;
   updatedAt?: T;
   createdAt?: T;
 }

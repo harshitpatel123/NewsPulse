@@ -825,9 +825,9 @@
           "primaryKey": false,
           "notNull": false
         },
-        "reviewed_by_id": {
-          "name": "reviewed_by_id",
-          "type": "integer",
+        "reviewed_by": {
+          "name": "reviewed_by",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
@@ -837,25 +837,11 @@
           "primaryKey": false,
           "notNull": false
         },
-        "reading_time": {
-          "name": "reading_time",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false,
-          "default": 1
-        },
         "search_text": {
           "name": "search_text",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
-        },
-        "views": {
-          "name": "views",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false,
-          "default": 0
         },
         "updated_at": {
           "name": "updated_at",
@@ -963,21 +949,6 @@
           "method": "btree",
           "with": {}
         },
-        "articles_reviewed_by_idx": {
-          "name": "articles_reviewed_by_idx",
-          "columns": [
-            {
-              "expression": "reviewed_by_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
         "articles_updated_at_idx": {
           "name": "articles_updated_at_idx",
           "columns": [
@@ -1049,19 +1020,6 @@
           "onDelete": "set null",
           "onUpdate": "no action"
         },
-        "articles_reviewed_by_id_users_id_fk": {
-          "name": "articles_reviewed_by_id_users_id_fk",
-          "tableFrom": "articles",
-          "tableTo": "users",
-          "columnsFrom": [
-            "reviewed_by_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "set null",
-          "onUpdate": "no action"
-        }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
@@ -1266,9 +1224,9 @@
           "primaryKey": false,
           "notNull": false
         },
-        "version_reviewed_by_id": {
-          "name": "version_reviewed_by_id",
-          "type": "integer",
+        "version_reviewed_by": {
+          "name": "version_reviewed_by",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
@@ -1278,25 +1236,11 @@
           "primaryKey": false,
           "notNull": false
         },
-        "version_reading_time": {
-          "name": "version_reading_time",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false,
-          "default": 1
-        },
         "version_search_text": {
           "name": "version_search_text",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
-        },
-        "version_views": {
-          "name": "version_views",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false,
-          "default": 0
         },
         "version_updated_at": {
           "name": "version_updated_at",
@@ -1431,21 +1375,6 @@
           "method": "btree",
           "with": {}
         },
-        "_articles_v_version_version_reviewed_by_idx": {
-          "name": "_articles_v_version_version_reviewed_by_idx",
-          "columns": [
-            {
-              "expression": "version_reviewed_by_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
         "_articles_v_version_version_updated_at_idx": {
           "name": "_articles_v_version_version_updated_at_idx",
           "columns": [
@@ -1560,19 +1489,6 @@
           "onDelete": "set null",
           "onUpdate": "no action"
         },
-        "_articles_v_version_reviewed_by_id_users_id_fk": {
-          "name": "_articles_v_version_reviewed_by_id_users_id_fk",
-          "tableFrom": "_articles_v",
-          "tableTo": "users",
-          "columnsFrom": [
-            "version_reviewed_by_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "set null",
-          "onUpdate": "no action"
-        }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},

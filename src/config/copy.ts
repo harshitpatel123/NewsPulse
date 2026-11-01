@@ -8,6 +8,8 @@ export const copy = {
     topStories: 'Top Stories',
     latestNews: 'Latest News',
     viewAll: 'View all',
+    emptyHeading: 'No stories yet',
+    emptyBody: 'New business and market coverage will appear here soon.',
   },
   article: {
     minRead: 'min read',
@@ -16,7 +18,6 @@ export const copy = {
   search: {
     placeholder: 'Search articles…',
     noResults: 'No results for',
-    tooShort: 'Enter at least 2 characters to search.',
     tooLong: 'Search query is too long.',
   },
   breaking: {
@@ -32,8 +33,5 @@ export const copy = {
   notFound: {
     heading: 'Page not found',
     body: 'The page you are looking for does not exist.',
-  },
-  footer: {
-    notice: 'Demo content created for an assessment. Articles are fictional.',
   },
 }
