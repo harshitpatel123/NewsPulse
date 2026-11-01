@@ -12,7 +12,7 @@ export default tseslint.config(
     },
   },
   {
-    ignores: ['.next/', 'src/payload-types.ts', 'node_modules/', 'tests/e2e/', 'src/app/my-route/'],
+    ignores: ['.next/', 'src/payload-types.ts', 'src/migrations/', 'node_modules/', 'tests/e2e/', 'src/app/my-route/'],
   },
   {
     // CJS files use CommonJS globals

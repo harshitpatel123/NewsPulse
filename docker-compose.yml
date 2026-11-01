@@ -16,5 +16,17 @@ services:
       timeout: 3s
       retries: 10
 
+  # DB studio — browse tables at http://localhost:8080
+  # Server: db, Username/Password/DB from .env
+  adminer:
+    image: adminer:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      - db
+    profiles:
+      - studio
+
 volumes:
   pgdata:

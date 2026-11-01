@@ -24,7 +24,7 @@ else
 endif
 
 .DEFAULT_GOAL := help
-.PHONY: help install dev build start start-prod stop restart status logs \
+.PHONY: help install dev build start start-prod stop restart status logs db-studio \
         db-up db-down db-logs db-reset db-backup \
         migrate migrate-create types \
         seed seed-dummy seed-reset \
@@ -122,6 +122,14 @@ endif
 
 db-up: ## Start Postgres and wait until it is healthy
 	docker compose up -d --wait db
+
+db-studio: db-up ## Open Adminer DB browser at http://localhost:8080
+	docker compose --profile studio up -d adminer
+ifeq ($(OS),Windows_NT)
+	@Start-Process "http://localhost:8080"
+else
+	@xdg-open http://localhost:8080 2>/dev/null || echo "Open http://localhost:8080 in your browser. Server: db, use credentials from .env"
+endif
 
 db-down: ## Stop Postgres (data is kept)
 	docker compose stop db

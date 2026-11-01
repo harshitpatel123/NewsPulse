@@ -7,6 +7,9 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { Categories } from './collections/Categories'
+import { Articles } from './collections/Articles/index'
+import { BreakingNews } from './globals/BreakingNews'
 import { brand } from './config/brand'
 
 const filename = fileURLToPath(import.meta.url)
@@ -23,9 +26,18 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      graphics: {
+        Logo: '@/components/admin/Logo#Logo',
+        Icon: '@/components/admin/Icon#Icon',
+      },
+      beforeNavLinks: ['@/components/admin/ReviewQueueLink#ReviewQueueLink'],
+    },
   },
 
-  collections: [Users, Media],
+  collections: [Users, Media, Categories, Articles],
+
+  globals: [BreakingNews],
 
   editor: lexicalEditor(),
 
